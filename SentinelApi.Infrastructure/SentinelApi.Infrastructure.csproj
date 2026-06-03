@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SentinelApi.Application\SentinelApi.Application.csproj" />
+    <ProjectReference Include="..\SentinelApi.Domain\SentinelApi.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Persistence\Context\" />
+    <Folder Include="Persistence\Mappings\" />
+    <Folder Include="Persistence\Repositories\" />
+  </ItemGroup>
+
+</Project>
