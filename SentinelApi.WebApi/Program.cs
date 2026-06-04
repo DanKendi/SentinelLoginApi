@@ -1,17 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using SentinelApi.Infrastructure.Persistence.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// DbContext Oracle
+builder.Services.AddDbContext<SentinelDbContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("Oracle")));
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

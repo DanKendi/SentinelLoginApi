@@ -12,6 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SentinelApi.Application\SentinelApi.Application.csproj" />
     <ProjectReference Include="..\SentinelApi.Domain\SentinelApi.Domain.csproj" />
     <ProjectReference Include="..\SentinelApi.Infrastructure\SentinelApi.Infrastructure.csproj" />
