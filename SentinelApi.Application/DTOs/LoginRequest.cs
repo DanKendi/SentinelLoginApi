@@ -2,5 +2,6 @@
 
 public record LoginRequest(
     string Email,
-    string Senha
+    string Senha,
+    string? FcmToken = null
 );

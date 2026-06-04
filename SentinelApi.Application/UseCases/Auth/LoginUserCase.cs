@@ -2,6 +2,7 @@
 
 using SentinelApi.Application.DTOs;
 using SentinelApi.Application.Interfaces;
+using SentinelApi.Domain.Exceptions;
 using SentinelApi.Domain.Interfaces;
 
 public class LoginUserUseCase
@@ -19,7 +20,21 @@ public class LoginUserUseCase
 
     public async Task<AuthResponse> ExecuteAsync(LoginRequest request)
     {
-        // Implementação completa na Fase 3
-        throw new NotImplementedException();
+        // Autentica no Firebase — lança DomainException se credenciais inválidas
+        var (idToken, uid) = await _firebaseAuthService.SignInAsync(request.Email, request.Senha);
+
+        // Busca dados complementares no Oracle
+        var usuario = await _usuarioRepository.GetByUidFirebaseAsync(uid);
+        if (usuario is null)
+            throw new DomainException("Usuário não encontrado.");
+
+        // Atualiza o FCM Token se foi enviado
+        if (!string.IsNullOrEmpty(request.FcmToken) && usuario.FcmToken != request.FcmToken)
+        {
+            usuario.FcmToken = request.FcmToken;
+            await _usuarioRepository.UpdateAsync(usuario);
+        }
+
+        return new AuthResponse(idToken, uid, usuario.Nome, usuario.Email);
     }
 }

@@ -12,7 +12,7 @@ using SentinelApi.Infrastructure.Persistence.Context;
 namespace SentinelApi.Infrastructure.Migrations
 {
     [DbContext(typeof(SentinelDbContext))]
-    [Migration("20260603234310_InitialCreate")]
+    [Migration("20260604013931_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
