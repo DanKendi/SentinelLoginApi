@@ -18,10 +18,24 @@ using SentinelApi.WebApi.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Firebase Admin SDK
+var firebaseCredential = Environment.GetEnvironmentVariable("FIREBASE_CREDENTIALS");
+
+GoogleCredential credential;
+
+if (!string.IsNullOrEmpty(firebaseCredential))
+{
+    // Produção (Railway) — lê da variável de ambiente
+    credential = GoogleCredential.FromJson(firebaseCredential);
+}
+else
+{
+    // Local — lê do arquivo
+    credential = GoogleCredential.FromFile("serviceAccountKey.json");
+}
+
 FirebaseApp.Create(new AppOptions
 {
-    Credential = GoogleCredential.FromFile(
-        Path.Combine(Directory.GetCurrentDirectory(), "serviceAccountKey.json"))
+    Credential = credential
 });
 
 // DbContext Oracle
