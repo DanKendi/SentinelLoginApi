@@ -421,5 +421,3 @@ Todos os erros são tratados pelo `ExceptionHandlingMiddleware` e retornam no fo
 | `Exception` (genérica) | 500 | Erro inesperado interno |
 
 ---
-
-*Desenvolvido por Daniel — FIAP ADS 2025*
